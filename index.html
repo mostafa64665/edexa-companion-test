@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>EDEXA · تجربة المرافق الذكي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--sky:#81CCFF;--blue:#1FA5FF;--purple:#7634FF;--deep:#262390;--ink:#16143F;--muted:#6B6A8E;--bg:#F6F7FF;--card:#fff;--border:#E2E1F0;--tp:#F1EBFF;--tb:#E6F5FF;--tn:#F0EFF8;--ok:#15803D;--okt:#E6F6EC;--warn:#B86E00;--warnt:#FFF4E0;--info:#0B7FD1;--grad:linear-gradient(270deg,#1FA5FF,#7634FF)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+button{font-family:inherit;cursor:pointer}
+.app{display:grid;grid-template-columns:1fr 340px;height:100vh;max-width:1280px;margin:0 auto;gap:0}
+header.top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--border);background:#fff}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Archivo';font-weight:700;letter-spacing:3px;color:var(--deep);direction:ltr}
+.brand .dot{width:28px;height:28px;border-radius:9px;background:var(--grad)}
+.lessonTag{font-size:13px;color:var(--muted)}
+.tabs{display:flex;gap:4px;background:var(--tn);padding:4px;border-radius:12px}
+.tabs button{border:0;background:transparent;padding:6px 14px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted)}
+.tabs button.on{background:#fff;color:var(--deep);box-shadow:0 1px 3px rgba(22,20,63,.08)}
+main.chatCol{display:flex;flex-direction:column;min-height:0;border-left:1px solid var(--border)}
+.modes{display:flex;gap:8px;padding:12px 20px;border-bottom:1px solid var(--border);background:#fff;flex-wrap:wrap;align-items:center}
+.modes .lbl{font-size:13px;color:var(--muted);margin-left:4px}
+.mode{border:1.5px solid var(--border);background:#fff;padding:5px 14px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink)}
+.mode.on{border-color:var(--purple);background:var(--tp);color:var(--purple)}
+.mode small{display:block;font-size:11px;font-weight:500;color:var(--muted);line-height:1.3}
+#chat{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:78%;padding:12px 16px;border-radius:18px;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot{background:#fff;border:1px solid var(--border);align-self:flex-start;border-top-right-radius:6px}
+.msg.me{background:var(--grad);color:#fff;align-self:flex-end;border-top-left-radius:6px}
+.msg.sys{align-self:center;background:transparent;color:var(--muted);font-size:12px;padding:2px 8px}
+.who{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:12px;color:var(--muted);font-weight:600}
+.who .av{width:22px;height:22px;border-radius:7px;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-family:'Archivo';font-size:10px}
+.qcard{align-self:flex-start;max-width:86%;background:#fff;border:1.5px solid var(--purple);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.qcard .meta{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:600;padding:2px 9px;border-radius:7px;background:var(--tp);color:var(--purple)}
+.pill.g{background:var(--tn);color:var(--muted)}
+.qcard .stem{font-weight:700;font-size:16px}
+.opt{display:flex;align-items:center;gap:10px;text-align:right;border:1.5px solid var(--border);background:#fff;border-radius:12px;padding:10px 14px;font-size:15px;font-weight:600;color:var(--ink);width:100%}
+.opt:hover:not(:disabled){border-color:var(--purple);background:#FBF9FF}
+.opt .r{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0}
+.opt.wrong{border-color:#E5A3A3;background:#FFF5F5;color:#9B2C2C;text-decoration:line-through}
+.opt.right{border-color:var(--ok);background:var(--okt);color:var(--ok)}
+.opt.right .r{border-color:var(--ok);background:var(--ok)}
+.opt:disabled{cursor:default}
+.openRow{display:flex;gap:8px}
+.openRow input{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;font-family:inherit;font-size:15px}
+.openRow button,.hintBtn{border:0;border-radius:12px;padding:8px 14px;font-weight:600}
+.openRow button{background:var(--grad);color:#fff}
+.hintBtn{background:var(--tb);color:var(--info);align-self:flex-start;font-size:13px}
+.hintBox{background:var(--warnt);color:#7A4A00;border-radius:12px;padding:8px 12px;font-size:14px}
+.typing{align-self:flex-start;color:var(--muted);font-size:13px}
+.composer{padding:12px 20px 16px;border-top:1px solid var(--border);background:#fff}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.quick button{border:1px solid var(--border);background:var(--bg);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--muted);font-weight:600}
+.inrow{display:flex;gap:8px}
+.inrow textarea{flex:1;resize:none;border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;font-family:inherit;font-size:15px;height:48px}
+.inrow textarea:focus,.openRow input:focus{outline:none;border-color:var(--purple)}
+.send{width:48px;height:48px;border-radius:14px;border:0;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center}
+.send:disabled{opacity:.5}
+aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;background:var(--bg)}
+.panel{background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px 16px}
+.panel h3{font-size:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.obj{padding:10px 0;border-bottom:1px solid var(--tn);display:flex;flex-direction:column;gap:6px}
+.obj:last-child{border-bottom:0}
+.obj .t{font-size:13px;font-weight:600;line-height:1.5}
+.obj .row{display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:7px;white-space:nowrap}
+.s-none{background:var(--tn);color:var(--muted)}.s-dev{background:var(--tb);color:var(--info)}.s-weak{background:var(--warnt);color:var(--warn)}.s-ok{background:var(--okt);color:var(--ok)}
+.dots{display:flex;gap:3px;direction:ltr}
+.dots i{width:9px;height:9px;border-radius:3px;background:var(--tn)}
+.dots i.c{background:var(--ok)}.dots i.h{background:#9AD4A9}.dots i.w{background:#E9A23B}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:6px}
+.legend span{display:flex;align-items:center;gap:4px}.legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.reset{border:1px solid var(--border);background:#fff;border-radius:10px;padding:4px 10px;font-size:12px;color:var(--muted)}
+.banner{margin:12px 20px 0;padding:10px 14px;border-radius:12px;background:var(--warnt);color:#7A4A00;font-size:13px;display:none}
+/* bank view */
+#bankView{grid-column:1/-1;overflow-y:auto;padding:24px;display:none}
+#bankView h2{font-size:20px;margin-bottom:4px}
+.bq{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:12px}
+.bq .head{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.bq table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.bq td{border-top:1px solid var(--tn);padding:6px 4px;vertical-align:top}
+.bq td:first-child{font-weight:600;width:40%}
+.okc{color:var(--ok);font-weight:700}
+.bq ol{padding-right:20px;font-size:13px;color:var(--muted)}
+.objList{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:12px}
+@media (max-width:900px){.app{grid-template-columns:1fr;height:auto}main.chatCol{height:calc(100vh - 60px);border-left:0}aside{order:3}.msg,.qcard{max-width:92%}}
+
+/* journey */
+.journey{padding:10px 20px 12px;border-bottom:1px solid var(--border);background:#fff}
+.steps{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.step{display:flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);background:var(--tn);border:1.5px solid transparent}
+.step .ic{font-size:13px}
+.step.on{background:var(--tp);color:var(--purple);border-color:var(--purple)}
+.step.on::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--purple);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.why{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:13px}
+.why .r{color:var(--ink)}
+.why .r b{color:var(--purple)}
+.other{border:1px solid var(--border);background:#fff;border-radius:10px;padding:4px 10px;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;position:relative}
+.menu{position:absolute;top:110%;left:0;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 30px rgba(22,20,63,.12);padding:6px;z-index:5;min-width:220px;display:none}
+.menu.open{display:block}
+.menu button{display:block;width:100%;text-align:right;border:0;background:none;padding:8px 10px;border-radius:9px;font-size:13px;color:var(--ink);font-weight:600}
+.menu button:hover{background:var(--bg)}
+.menu .hd{font-size:11px;color:var(--muted);padding:4px 10px}
+.msg.sys.mode{background:var(--tp);color:var(--purple);font-weight:600;border-radius:999px;padding:4px 14px;font-size:12px}
+.qcard.test{border-color:var(--deep)}
+.qcard.test .opt.chosen{border-color:var(--deep);background:var(--tn)}
+.startBtn{align-self:flex-start;border:0;background:var(--grad);color:#fff;border-radius:14px;padding:10px 22px;font-weight:700;font-size:15px}
+.log{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto}
+.log .e{font-size:12px;line-height:1.55;border-right:3px solid var(--purple);padding-right:8px}
+.log .e b{color:var(--deep)}
+.log .e span{color:var(--muted)}
+.done{background:var(--okt);color:var(--ok);border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600}
+
+.screen{display:none}.screen.on{display:block}
+#appScreen.on{display:grid}
+.center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.loginBox{background:#fff;border:1px solid var(--border);border-radius:24px;padding:28px;width:100%;max-width:400px;display:flex;flex-direction:column;gap:14px}
+.loginBox h1{font-size:22px}
+.loginBox input{border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;font-family:inherit;font-size:15px}
+.loginBox input:focus{outline:none;border-color:var(--purple)}
+.bigBtn{border:0;background:var(--grad);color:#fff;border-radius:14px;padding:12px;font-weight:700;font-size:16px}
+.err{color:#B42318;font-size:13px;min-height:18px}
+.lessonsWrap{max-width:1000px;margin:0 auto;padding:24px}
+.lessonsHead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.lcard{background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px;text-align:right;cursor:pointer;display:flex;flex-direction:column;gap:6px;font-family:inherit}
+.lcard:hover{border-color:var(--purple);box-shadow:0 6px 20px rgba(118,52,255,.08)}
+.lcard .k{font-size:12px;color:var(--purple);font-weight:600}
+.lcard .t{font-size:17px;font-weight:700;color:var(--ink)}
+.lcard .m{font-size:12px;color:var(--muted)}
+.excl{margin-top:20px;font-size:13px;color:var(--muted)}
+.excl li{margin:4px 18px 0 0}
+.backBtn{border:1px solid var(--border);background:#fff;border-radius:10px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--ink)}
+.fb{display:flex;gap:6px;margin-top:6px;align-items:center}
+.fb button{border:1px solid var(--border);background:#fff;border-radius:8px;padding:1px 8px;font-size:12px}
+.fb button.sel{background:var(--tp);border-color:var(--purple)}
+.fb input{flex:1;border:1px solid var(--border);border-radius:8px;padding:3px 8px;font-family:inherit;font-size:12px;display:none}
+.typing{align-self:flex-start;color:var(--muted);font-size:13px;padding:4px 8px}
+.pillAi{font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--okt);color:var(--ok)}
+.pillAi.mock{background:var(--warnt);color:var(--warn)}
+.who2{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- login -->
+<section class="screen center" id="loginScreen">
+  <div class="loginBox">
+    <div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div>
+    <h1>تجربة المرافق الذكي</h1>
+    <div class="note">لغتي الخالدة · الصف الأول المتوسط · الوحدة الأولى. نسخة تجريبية لفريق العمل فقط.</div>
+    <input id="nameIn" placeholder="اسمك (يظهر في تقارير التجربة)" autocomplete="name">
+    <input id="passIn" placeholder="رمز الدخول" type="password">
+    <button class="bigBtn" id="loginBtn">دخول</button>
+    <div class="err" id="loginErr"></div>
+  </div>
+</section>
+
+<!-- lessons -->
+<section class="screen" id="lessonsScreen">
+  <div class="lessonsWrap">
+    <div class="lessonsHead">
+      <div><div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div>
+        <h2 style="margin-top:8px" id="unitTitle">الوحدة الأولى</h2><div class="note" id="unitBook"></div></div>
+      <div style="display:flex;gap:8px;align-items:center"><span class="who2" id="whoami"></span><span class="pillAi" id="aiPill"></span><button class="backBtn" id="logoutBtn">خروج</button></div>
+    </div>
+    <div class="grid" id="lessonGrid"></div>
+    <div class="excl" id="excluded"></div>
+  </div>
+</section>
+
+<!-- lesson / companion -->
+<div class="app screen" id="appScreen">
+  <header class="top">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="backBtn" id="backBtn">→ الدروس</button>
+      <div class="lessonTag" id="lessonTag"></div>
+    </div>
+    <span class="pillAi" id="aiPill2"></span>
+  </header>
+  <main class="chatCol" id="chatView">
+    <div class="journey">
+      <div class="steps" id="steps"></div>
+      <div class="why"><div class="r" id="why"></div>
+        <div style="position:relative" id="otherWrap"><button class="other" id="otherBtn">اختيار نشاط آخر ▾</button>
+          <div class="menu" id="menu">
+            <div class="hd">المرافق يقترح المسار، ولك أن تختار غيره:</div>
+            <button data-a="practice">أريد أن أتدرّب</button>
+            <button data-a="test">أريد اختبارًا قصيرًا</button>
+            <button data-a="review">أريد مراجعة ما درسته</button>
+            <button data-a="homework">عندي سؤال من الواجب</button>
+            <button data-a="learn">اشرح لي من جديد</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="banner" id="banner"></div>
+    <div id="chat"></div>
+    <div class="composer">
+      <div class="inrow">
+        <textarea id="inp" placeholder="اكتب سؤالك أو إجابتك… (تقدر تكتب بالعامية)"></textarea>
+        <button class="send" id="send" aria-label="إرسال"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg></button>
+      </div>
+    </div>
+  </main>
+  <aside id="side">
+    <div class="panel"><h3>تقدّمك في الدرس <button class="reset" id="reset">ابدأ الدرس من جديد</button></h3>
+      <div id="objs"></div>
+      <div class="legend"><span><i style="background:#15803D"></i>صح من أول مرة</span><span><i style="background:#9AD4A9"></i>صح بعد تلميح</span><span><i style="background:#E9A23B"></i>خطأ</span></div></div>
+    <div class="panel"><h3>رحلة التعلّم</h3><div class="note" style="margin-bottom:8px">كل انتقال بين الأوضاع وسببه.</div><div class="log" id="log"></div></div>
+    <div class="panel"><h3>للمختبِرين</h3><div class="note">
+      • جرّب أن تطلب الإجابة مباشرة، وأن تخطئ عمدًا، وأن تكتب بالعامية.<br>
+      • قل «عندي امتحان بكرة» أو «أبي أراجع» وشوف هل يغيّر المسار.<br>
+      • اكتب سؤالًا من «واجبك» واطلب الحل.<br>
+      • قيّم ردود المرافق بـ 👍 أو 👎 واكتب ملاحظتك؛ تُحفظ للفريق.</div></div>
+  </aside>
+</div>
+
+<script>
+const API = new URLSearchParams(location.search).get("api") || "https://wdfvbgatiprhfphljdle.supabase.co/functions/v1/companion";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/«(.+?)»/g, '«<b style="color:#262390">$1</b>»');
+const store = { get(k) { try { return JSON.parse(localStorage.getItem("edexa_" + k)); } catch { return null; } }, set(k, v) { try { localStorage.setItem("edexa_" + k, JSON.stringify(v)); } catch {} } };
+let auth = store.get("auth"); // {passcode, tester_id, name}
+let lesson = null, session = null, busy = false, cards = {};
+
+async function api(action, body = {}) {
+  const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, passcode: auth?.passcode, tester_id: auth?.tester_id, ...body }) });
+  let j = {}; try { j = await r.json(); } catch {}
+  if (!r.ok) { const e = new Error(j.error || ("خطأ " + r.status)); e.status = r.status; throw e; }
+  return j;
+}
+function show(id) { document.querySelectorAll(".screen").forEach((s) => s.classList.toggle("on", s.id === id)); }
+
+/* ---------- login ---------- */
+$("#loginBtn").onclick = async () => {
+  const name = $("#nameIn").value.trim(), passcode = $("#passIn").value.trim();
+  if (!name || !passcode) { $("#loginErr").textContent = "اكتب اسمك ورمز الدخول"; return; }
+  $("#loginErr").textContent = ""; $("#loginBtn").disabled = true;
+  try {
+    auth = { passcode };
+    await api("lessons");
+    const { tester_id } = await api("login", { name });
+    auth = { passcode, tester_id, name }; store.set("auth", auth); openLessons();
+  } catch (e) { $("#loginErr").textContent = e.message; auth = null; }
+  finally { $("#loginBtn").disabled = false; }
+};
+$("#passIn").onkeydown = (e) => { if (e.key === "Enter") $("#loginBtn").click(); };
+$("#logoutBtn").onclick = () => { store.set("auth", null); auth = null; show("loginScreen"); };
+
+/* ---------- lessons ---------- */
+function aiPill(el, ai) { el.textContent = ai === "mock" ? "وضع تجريبي بدون ذكاء اصطناعي" : "متصل بالذكاء الاصطناعي"; el.classList.toggle("mock", ai === "mock"); }
+async function openLessons() {
+  show("lessonsScreen"); $("#whoami").textContent = auth.name;
+  try {
+    const d = await api("lessons");
+    aiPill($("#aiPill"), d.ai);
+    $("#unitTitle").textContent = d.unit.title; $("#unitBook").textContent = d.unit.book;
+    $("#lessonGrid").innerHTML = d.lessons.map((l) => `<button class="lcard" data-id="${l.id}"><span class="k">${esc(l.kind)}</span><span class="t">${esc(l.title)}</span><span class="m">${esc(l.pages)} · ${l.objectives} أهداف · ${l.questions} سؤالًا</span></button>`).join("");
+    $("#lessonGrid").querySelectorAll(".lcard").forEach((b) => (b.onclick = () => openLesson(b.dataset.id)));
+    $("#excluded").innerHTML = `<b>دروس خارج هذه النسخة:</b><ul>${d.unit.excluded.map((x) => `<li>${esc(x.title)} (${esc(x.pages)}): ${esc(x.reason)}</li>`).join("")}</ul>`;
+  } catch (e) { if (e.status === 401) { store.set("auth", null); show("loginScreen"); $("#loginErr").textContent = e.message; } else alert(e.message); }
+}
+
+/* ---------- lesson ---------- */
+async function openLesson(id) {
+  show("appScreen"); $("#chat").innerHTML = ""; cards = {}; $("#banner").style.display = "none";
+  try {
+    const d = await api("open", { lesson_id: id });
+    lesson = d.lesson; session = d.session_id;
+    $("#lessonTag").innerHTML = `المرافق الذكي · لغتي الخالدة · <b>${esc(lesson.title)}</b> · ${esc(lesson.pages)}`;
+    aiPill($("#aiPill2"), d.ai);
+    if (d.ai === "mock") banner("وضع تجريبي: مفتاح الذكاء الاصطناعي لم يُضف بعد. المسار والأسئلة والتلميحات تعمل، لكن ردود المرافق نصوص ثابتة.");
+    if (!d.history.length || !d.view.started) addBubble("bot", `أهلًا ${auth.name}! أنا مرافقك في درس «${lesson.title}».\nسأنقلك بين الشرح والحوار والتدريب والمراجعة والاختبار حسب إجاباتك، وسأخبرك دائمًا أين نحن ولماذا. وإن كان عندك هدف معيّن قله لي في أي وقت.\nماذا تريد اليوم؟`);
+    d.history.forEach(renderItem);
+    renderView(d.view);
+    if (!d.view.started) goalChips();
+    const last = store.get("last_" + id), now = Date.now();
+    store.set("last_" + id, now);
+    if (d.view.started && last && now - last > 10 * 60 * 1000) act({ kind: "resume" });
+  } catch (e) { banner(e.message); }
+}
+$("#backBtn").onclick = () => openLessons();
+function goalChips() {
+  const w = document.createElement("div"); w.style.cssText = "display:flex;gap:8px;flex-wrap:wrap;align-self:flex-start"; w.id = "goals";
+  [["learn", "📘 أتعلّم الدرس من البداية"], ["exam_prep", "🧪 عندي امتحان وعايز أراجع"], ["homework", "📝 عندي سؤال من الواجب"]].forEach(([g, t], i) => {
+    const b = document.createElement("button"); b.className = "startBtn"; if (i) b.style.cssText = "background:#fff;color:#262390;border:1.5px solid #262390"; b.textContent = t;
+    b.onclick = () => { if (busy) return; w.remove(); act({ kind: "start", goal: g, label: t.slice(2).trim() }); };
+    w.appendChild(b);
+  });
+  $("#chat").appendChild(w); scroll();
+}
+function banner(t) { const b = $("#banner"); b.textContent = t; b.style.display = "block"; }
+function scroll() { const c = $("#chat"); c.scrollTop = c.scrollHeight; }
+
+function addBubble(role, text, id) {
+  const el = document.createElement("div");
+  if (role === "sys" || role === "modeSys") { el.className = "msg sys" + (role === "modeSys" ? " mode" : ""); el.textContent = text; }
+  else {
+    el.className = "msg " + (role === "bot" ? "bot" : "me");
+    el.innerHTML = (role === "bot" ? '<div class="who"><span class="av">ED</span>المرافق</div>' : "") + `<div class="body">${fmt(text)}</div>`;
+    if (role === "bot" && id) {
+      const fb = document.createElement("div"); fb.className = "fb";
+      fb.innerHTML = `<button data-r="1">👍</button><button data-r="-1">👎</button><input placeholder="ملاحظة للفريق (اختياري) ثم Enter">`;
+      const inp = fb.querySelector("input");
+      fb.querySelectorAll("button").forEach((b) => (b.onclick = async () => {
+        fb.querySelectorAll("button").forEach((x) => x.classList.toggle("sel", x === b)); inp.style.display = "block"; inp.focus();
+        try { await api("feedback", { session_id: session, message_id: id, rating: Number(b.dataset.r) }); } catch {}
+      }));
+      inp.onkeydown = async (e) => { if (e.key === "Enter" && inp.value.trim()) { try { await api("feedback", { session_id: session, message_id: id, note: inp.value.trim() }); inp.value = ""; inp.placeholder = "تم الحفظ ✓"; } catch {} } };
+      el.appendChild(fb);
+    }
+  }
+  $("#chat").appendChild(el); scroll(); return el;
+}
+function renderCard(it) {
+  const st = it.state || {};
+  const card = document.createElement("div"); card.className = "qcard" + (it.test ? " test" : ""); card.dataset.q = it.q;
+  card.innerHTML = `<div class="meta">${it.test ? `<span class="pill" style="background:#262390;color:#fff">🧪 سؤال اختبار ${it.testIndex} من ${it.testTotal}</span>` : ""}<span class="pill">${esc(it.objText)}</span><span class="pill g">الصعوبة ${"●".repeat(it.diff)}${"○".repeat(3 - it.diff)}</span></div><div class="stem">${fmt(it.stem)}</div>`;
+  if (it.kind === "mcq") {
+    it.options.forEach((t, i) => {
+      const b = document.createElement("button"); b.className = "opt"; b.innerHTML = `<span class="r"></span><span>${fmt(t)}</span>`;
+      if (it.test) { if (st.chosen === i) b.classList.add("chosen"); if (st.done) b.disabled = true; }
+      else { if ((st.wrong || []).includes(i)) { b.classList.add("wrong"); b.disabled = true; } if (st.done) { b.disabled = true; if (st.correct === i) b.classList.add("right"); } }
+      b.onclick = () => { if (busy) return; act({ kind: "answer", q: it.q, choice: i }); };
+      card.appendChild(b);
+    });
+  } else {
+    const row = document.createElement("div"); row.className = "openRow"; row.innerHTML = `<input placeholder="اكتب إجابتك هنا…"><button>إرسال</button>`;
+    const inp = row.querySelector("input"), btn = row.querySelector("button");
+    if (st.done) { inp.disabled = true; btn.disabled = true; inp.value = st.last || ""; }
+    btn.onclick = () => { const v = inp.value.trim(); if (!v || busy) return; addBubble("me", v); act({ kind: "answer", q: it.q, text: v }); };
+    inp.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); btn.click(); } };
+    card.appendChild(row);
+  }
+  if (!it.test && !st.done && it.hintsTotal) { const hb = document.createElement("button"); hb.className = "hintBtn"; hb.textContent = "💡 أحتاج تلميحًا"; hb.onclick = () => { if (!busy) act({ kind: "hint", q: it.q }); }; card.appendChild(hb); }
+  (st.shownHints || []).forEach((h) => { const d = document.createElement("div"); d.className = "hintBox"; d.textContent = h; card.appendChild(d); });
+  // lock older open cards while a test runs
+  if (it.test) Object.values(cards).forEach((c) => { if (!c.classList.contains("test")) lockCard(c); });
+  cards[it.q] = card; $("#chat").appendChild(card); scroll();
+}
+function lockCard(c) { c.querySelectorAll("button,input").forEach((b) => (b.disabled = true)); c.querySelector(".hintBtn")?.remove(); }
+function renderItem(it) {
+  if (it.type === "student") addBubble("me", it.text);
+  else if (it.type === "bot") addBubble("bot", it.text, it.id);
+  else if (it.type === "mode") addBubble("modeSys", `${it.icon} انتقال إلى وضع ${it.name}${it.focusName ? " · " + it.focusName : ""}${it.by === "student" ? " (اختيارك)" : ""}`);
+  else if (it.type === "sys") addBubble("sys", it.text);
+  else if (it.type === "card") renderCard(it);
+  else if (it.type === "hint") { const c = cards[it.q]; if (c) { const d = document.createElement("div"); d.className = "hintBox"; d.textContent = it.text; c.appendChild(d); scroll(); } }
+  else if (it.type === "result") {
+    const c = cards[it.q]; if (!c) return; const opts = c.querySelectorAll(".opt");
+    if (it.test) { opts[it.chosen]?.classList.add("chosen"); lockCard(c); }
+    else if (it.correct) { if (it.chosen != null) opts[it.chosen]?.classList.add("right"); lockCard(c); }
+    else if (it.chosen != null) { opts[it.chosen].classList.add("wrong"); opts[it.chosen].disabled = true; }
+  }
+}
+function renderView(v) {
+  $("#steps").innerHTML = v.modes.map((m) => `<span class="step ${m.id === v.mode ? "on" : ""}"><span class="ic">${m.icon}</span>${esc(m.name)}</span>`).join("");
+  $("#why").innerHTML = v.complete ? `<span class="done">✓ أنهيت الدرس</span> <span class="note">${esc(v.reason)}</span>` : `<b>${esc(v.modeName)}${v.focusName ? " · " + esc(v.focusName) : ""}:</b> ${esc(v.reason)}`;
+  $("#objs").innerHTML = v.objectives.map((o) => { const cls = { none: "s-none", dev: "s-dev", weak: "s-weak", ok: "s-ok" }[o.status.k];
+    return `<div class="obj" style="${o.id === v.focus ? "background:#FBF9FF;margin:0 -8px;padding:10px 8px;border-radius:10px" : ""}"><div class="t">${esc(o.text)}</div><div class="row"><span class="badge ${cls}">${esc(o.status.t)}</span><span class="dots">${o.dots.map((r) => `<i class="${r}"></i>`).join("") || "<i></i><i></i><i></i>"}</span></div></div>`; }).join("");
+  $("#log").innerHTML = v.log.map((e) => `<div class="e"><b>${e.icon} ${esc(e.name)}${e.focusName ? " · " + esc(e.focusName) : ""}</b>${e.by === "student" ? " <span>(اختيار الطالب)</span>" : ""}<br>${esc(e.reason)}</div>`).join("");
+}
+async function act(payload) {
+  if (busy) return; busy = true; setBusy(true);
+  const typing = document.createElement("div"); typing.className = "typing"; typing.textContent = "المرافق يكتب…"; $("#chat").appendChild(typing); scroll();
+  try {
+    const d = await api("act", { lesson_id: lesson.id, ...payload });
+    typing.remove(); d.items.forEach(renderItem); renderView(d.view);
+    store.set("last_" + lesson.id, Date.now());
+  } catch (e) { typing.remove(); addBubble("sys", "⚠️ " + e.message); }
+  finally { busy = false; setBusy(false); }
+}
+function setBusy(b) { $("#send").disabled = b; $("#inp").disabled = b; if (!b) $("#inp").focus(); }
+function sendText() { const v = $("#inp").value.trim(); if (!v || busy) return; $("#inp").value = ""; $("#goals")?.remove(); addBubble("me", v); act({ kind: "message", text: v }); }
+$("#send").onclick = sendText;
+$("#inp").onkeydown = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendText(); } };
+$("#otherBtn").onclick = () => $("#menu").classList.toggle("open");
+document.addEventListener("click", (e) => { if (!e.target.closest("#otherWrap")) $("#menu").classList.remove("open"); });
+$("#menu").querySelectorAll("button").forEach((b) => (b.onclick = () => { $("#menu").classList.remove("open"); $("#goals")?.remove(); act({ kind: "choose", activity: b.dataset.a }); }));
+$("#reset").onclick = async () => { if (busy || !confirmReset()) return; await api("reset", { lesson_id: lesson.id }); openLesson(lesson.id); };
+function confirmReset() { const b = $("#reset"); if (b.dataset.armed) { delete b.dataset.armed; b.textContent = "ابدأ الدرس من جديد"; return true; } b.dataset.armed = 1; b.textContent = "اضغط مرة أخرى للتأكيد"; setTimeout(() => { delete b.dataset.armed; b.textContent = "ابدأ الدرس من جديد"; }, 3000); return false; }
+
+/* ---------- boot ---------- */
+if (auth?.tester_id) openLessons(); else show("loginScreen");
+</script>
+</body>
+</html>
