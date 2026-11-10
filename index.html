@@ -119,7 +119,7 @@ aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;b
 .log .e span{color:var(--muted)}
 .done{background:var(--okt);color:var(--ok);border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600}
 
-.screen{display:none}.screen.on{display:block}
+.screen{display:none}.screen.on{display:block}.screen.center.on{display:flex}.screen:not(.on){display:none!important}
 #appScreen.on{display:grid}
 .center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .loginBox{background:#fff;border:1px solid var(--border);border-radius:24px;padding:28px;width:100%;max-width:400px;display:flex;flex-direction:column;gap:14px}
@@ -147,6 +147,45 @@ aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;b
 .pillAi{font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--okt);color:var(--ok)}
 .pillAi.mock{background:var(--warnt);color:var(--warn)}
 .who2{font-size:13px;color:var(--muted)}
+
+/* ---- journey (home, onboarding, placement, report) ---- */
+.hello{background:#fff;border:1px solid var(--border);border-radius:20px;padding:16px 18px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.hello h2{font-size:20px}.hello .stats{display:flex;gap:8px;flex-wrap:wrap}
+.stat{background:var(--tn);border-radius:12px;padding:6px 12px;font-size:12px;color:var(--muted)}.stat b{color:var(--deep);font-size:15px;margin-inline-end:4px}
+.secT{font-size:15px;font-weight:700;margin:18px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.pcard{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:6px;text-align:right;font-family:inherit;cursor:pointer}
+.pcard:hover{border-color:var(--purple)}
+.pcard.first{border-color:var(--purple);background:linear-gradient(180deg,#FBF9FF,#fff)}
+.pcard .k{font-size:12px;font-weight:700;color:var(--purple)}.pcard .t{font-weight:700;font-size:15px;color:var(--ink)}
+.pcard .r{font-size:13px;color:var(--muted)}.pcard .go{align-self:flex-start;margin-top:4px;font-size:13px;font-weight:700;color:var(--purple)}
+.lcard .objs{display:flex;gap:4px;margin-top:2px}.lcard .objs i{width:22px;height:6px;border-radius:3px;background:var(--tn)}
+.lcard .objs i.ok{background:var(--ok)}.lcard .objs i.dev{background:#9AD4A9}.lcard .objs i.weak{background:#E9A23B}
+.tag{display:inline-block;font-size:11px;border-radius:999px;padding:1px 8px;font-weight:700}
+.tag.ok{background:var(--okt);color:var(--ok)}.tag.no{background:var(--warnt);color:var(--warn)}.tag.done{background:var(--tp);color:var(--purple)}
+.warnLine{font-size:11px;color:var(--warn)}
+.mist{background:#fff;border:1px solid var(--border);border-inline-start:4px solid #E9A23B;border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.mist .w{font-size:13px}.mist .w b{color:var(--ink)}.mist .w .why{color:var(--muted);font-size:12px;margin-top:2px}
+.smallBtn{border:1.5px solid var(--purple);background:#fff;color:var(--purple);border-radius:10px;padding:4px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+.examBox{background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;margin-top:8px;display:none}
+.examBox.on{display:block}.examBox select{font-family:inherit;border:1.5px solid var(--border);border-radius:10px;padding:4px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.chip.on{border-color:var(--purple);background:var(--tp);color:var(--purple)}
+.plWrap{max-width:640px;margin:0 auto;padding:24px;display:flex;flex-direction:column;gap:14px}
+.plWrap .qcard{max-width:100%;align-self:stretch}
+.bar{height:8px;background:var(--tn);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--grad)}
+.conf{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.conf button{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;color:var(--muted)}
+.conf button.on{border-color:var(--purple);color:var(--purple);background:var(--tp)}
+.icoBtn{width:48px;height:48px;border-radius:14px;border:1.5px solid var(--border);background:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icoBtn.rec{background:#FDECEC;border-color:#E5A3A3}
+.attach{font-size:12px;color:var(--purple);margin-bottom:6px;display:none}.attach.on{display:block}
+.msg img{max-width:220px;border-radius:12px;display:block;margin-bottom:6px}
+.report{max-width:720px;margin:0 auto;padding:24px;display:flex;flex-direction:column;gap:12px}
+.report .panel p{font-size:15px;line-height:1.9;white-space:pre-wrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.kv div{background:var(--tn);border-radius:12px;padding:10px}.kv b{display:block;font-size:20px;color:var(--deep)}.kv span{font-size:12px;color:var(--muted)}
+@media (max-width:760px){.app{grid-template-columns:1fr;height:auto;min-height:100vh}aside#side{display:none}.lessonsWrap,.plWrap,.report{padding:14px}.msg,.qcard{max-width:94%}}
 </style>
 </head>
 <body>
@@ -164,16 +203,63 @@ aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;b
   </div>
 </section>
 
-<!-- lessons -->
+<!-- onboarding -->
+<section class="screen center" id="onboardScreen">
+  <div class="loginBox" style="max-width:520px">
+    <div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div>
+    <h1 id="obHello">أهلًا!</h1>
+    <div class="note" style="font-size:14px">أنا مرافقك في «لغتي الخالدة». قبل أن نبدأ، أريد أن أعرفك قليلًا حتى تكون أمثلتي من عالمك أنت.</div>
+    <b>ماذا تحب؟ (اختر ما يناسبك)</b>
+    <div class="chips" id="obChips"></div>
+    <input id="obMore" placeholder="شيء آخر تحبه؟ (اختياري)">
+    <button class="bigBtn" id="obGo">التالي: تقييم سريع (6 دقائق)</button>
+    <button class="backBtn" id="obSkip" style="align-self:center">تخطَّ الآن</button>
+  </div>
+</section>
+
+<!-- placement -->
+<section class="screen" id="placementScreen">
+  <div class="plWrap">
+    <div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div>
+    <h2>تقييم مبدئي</h2>
+    <div class="note" style="font-size:14px">سؤال واحد من كل درس في الوحدة. ليس اختبارًا ولا درجة: فقط حتى أعرف من أين نبدأ معك. لا تخمّن؛ إن لم تعرف فاختر ما تراه أقرب، وقل لي إن كنت متأكدًا.</div>
+    <div class="bar"><i id="plBar" style="width:0"></i></div>
+    <div id="plBody"></div>
+  </div>
+</section>
+
+<!-- home -->
 <section class="screen" id="lessonsScreen">
   <div class="lessonsWrap">
     <div class="lessonsHead">
       <div><div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div>
-        <h2 style="margin-top:8px" id="unitTitle">الوحدة الأولى</h2><div class="note" id="unitBook"></div></div>
+        <div class="note" id="unitBook" style="margin-top:6px"></div></div>
       <div style="display:flex;gap:8px;align-items:center"><span class="who2" id="whoami"></span><span class="pillAi" id="aiPill"></span><button class="backBtn" id="logoutBtn">خروج</button></div>
     </div>
+    <div class="hello"><div><h2 id="helloT">أهلًا</h2><div class="note" id="helloS"></div></div><div class="stats" id="stats"></div></div>
+    <div class="secT">خطتك اليوم <span style="display:flex;gap:6px"><button class="smallBtn" id="examBtn">🧪 عندي امتحان</button><button class="smallBtn" id="reportBtn">📄 تقرير ولي الأمر</button></span></div>
+    <div class="examBox" id="examBox"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px"><b>كم من الوقت عندك للمذاكرة؟</b>
+      <select id="examMin"><option value="30">نصف ساعة</option><option value="60" selected>ساعة</option><option value="120">ساعتان</option><option value="180">3 ساعات</option></select>
+      <button class="smallBtn" id="examGo">ابنِ خطتي</button></div><div id="examList"></div></div>
+    <div class="plan" id="plan"></div>
+    <div class="secT" id="unitTitle">دروس الوحدة</div>
     <div class="grid" id="lessonGrid"></div>
+    <div class="secT">دفتر أخطائي <span class="note">كل خطأ يعود إليك حتى تتقنه</span></div>
+    <div id="mistakes"></div>
     <div class="excl" id="excluded"></div>
+  </div>
+</section>
+
+<!-- parent report -->
+<section class="screen" id="reportScreen">
+  <div class="report">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="brand" style="justify-content:flex-start"><span class="dot"></span>EDEXA</div><button class="backBtn" id="repBack">→ الرئيسية</button></div>
+    <h2 id="repTitle">تقرير ولي الأمر</h2><div class="note" id="repSub"></div>
+    <div class="panel"><p id="repText">جارٍ إعداد التقرير…</p></div>
+    <div class="kv" id="repKv"></div>
+    <div class="panel" id="repDetails"></div>
+    <div class="panel" id="repShare" style="display:none"><h3>شارك التقرير مع ولي الأمر</h3><div class="note">رابط خاص يفتح التقرير فقط، بدون رمز الدخول.</div>
+      <div style="display:flex;gap:8px;margin-top:8px"><input id="repLink" readonly style="flex:1;border:1.5px solid var(--border);border-radius:10px;padding:6px 10px;font-family:inherit;direction:ltr"><button class="smallBtn" id="repCopy">نسخ</button></div></div>
   </div>
 </section>
 
@@ -181,7 +267,7 @@ aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;b
 <div class="app screen" id="appScreen">
   <header class="top">
     <div style="display:flex;align-items:center;gap:12px">
-      <button class="backBtn" id="backBtn">→ الدروس</button>
+      <button class="backBtn" id="backBtn">→ الرئيسية</button>
       <div class="lessonTag" id="lessonTag"></div>
     </div>
     <span class="pillAi" id="aiPill2"></span>
@@ -205,7 +291,10 @@ aside{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;b
     <div class="banner" id="banner"></div>
     <div id="chat"></div>
     <div class="composer">
+      <div class="attach" id="attach"></div>
       <div class="inrow">
+        <label class="icoBtn" title="أرسل صورة: صفحة كتاب، ورقة عمل، أو حلّك بخط يدك">📷<input type="file" id="imgIn" accept="image/*" hidden></label>
+        <button class="icoBtn" id="mic" title="اسأل بصوتك">🎤</button>
         <textarea id="inp" placeholder="اكتب سؤالك أو إجابتك… (تقدر تكتب بالعامية)"></textarea>
         <button class="send" id="send" aria-label="إرسال"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg></button>
       </div>
@@ -250,29 +339,90 @@ $("#loginBtn").onclick = async () => {
     auth = { passcode };
     await api("lessons");
     const { tester_id } = await api("login", { name });
-    auth = { passcode, tester_id, name }; store.set("auth", auth); openLessons();
+    auth = { passcode, tester_id, name }; store.set("auth", auth); goHome();
   } catch (e) { $("#loginErr").textContent = e.message; auth = null; }
   finally { $("#loginBtn").disabled = false; }
 };
 $("#passIn").onkeydown = (e) => { if (e.key === "Enter") $("#loginBtn").click(); };
 $("#logoutBtn").onclick = () => { store.set("auth", null); auth = null; show("loginScreen"); };
 
-/* ---------- lessons ---------- */
+/* ---------- home: daily plan, lessons, mistakes notebook ---------- */
 function aiPill(el, ai) { el.textContent = ai === "mock" ? "وضع تجريبي بدون ذكاء اصطناعي" : "متصل بالذكاء الاصطناعي"; el.classList.toggle("mock", ai === "mock"); }
-async function openLessons() {
-  show("lessonsScreen"); $("#whoami").textContent = auth.name;
+const KIND = { placement: "🧭 البداية", review: "🔁 مراجعة", fix: "🩹 علاج خطأ", continue: "▶️ أكمل", new: "📘 جديد", test: "🧪 تحقّق" };
+function authFail(e) { if (e.status === 401) { store.set("auth", null); show("loginScreen"); $("#loginErr").textContent = e.message; return true; } return false; }
+async function goHome() {
   try {
-    const d = await api("lessons");
-    aiPill($("#aiPill"), d.ai);
-    $("#unitTitle").textContent = d.unit.title; $("#unitBook").textContent = d.unit.book;
-    $("#lessonGrid").innerHTML = d.lessons.map((l) => `<button class="lcard" data-id="${l.id}"><span class="k">${esc(l.kind)}</span><span class="t">${esc(l.title)}</span><span class="m">${esc(l.pages)} · ${l.objectives} أهداف · ${l.questions} سؤالًا</span></button>`).join("");
-    $("#lessonGrid").querySelectorAll(".lcard").forEach((b) => (b.onclick = () => openLesson(b.dataset.id)));
-    $("#excluded").innerHTML = `<b>دروس خارج هذه النسخة:</b><ul>${d.unit.excluded.map((x) => `<li>${esc(x.title)} (${esc(x.pages)}): ${esc(x.reason)}</li>`).join("")}</ul>`;
-  } catch (e) { if (e.status === 401) { store.set("auth", null); show("loginScreen"); $("#loginErr").textContent = e.message; } else alert(e.message); }
+    const h = await api("home");
+    if (!h.onboarded) return onboarding();
+    renderHome(h);
+  } catch (e) { if (!authFail(e)) alert(e.message); }
+}
+const openLessons = goHome;
+function renderHome(h) {
+  show("lessonsScreen"); $("#whoami").textContent = auth.name; aiPill($("#aiPill"), h.ai);
+  $("#unitBook").textContent = h.unit.book;
+  $("#helloT").textContent = (h.daysAway >= 2 ? "وحشتنا يا " : "أهلًا يا ") + h.name + (h.daysAway >= 2 ? `! غبت ${h.daysAway} أيام` : "");
+  $("#helloS").textContent = h.due ? `عندك ${h.due} ${h.due > 1 ? "مهارات تحتاج" : "مهارة تحتاج"} مراجعة اليوم حتى لا تُنسى.` : "هذه خطتك لليوم، اخترتها لك حسب ما تحتاجه الآن.";
+  const ind = h.independence.at(-1);
+  $("#stats").innerHTML = `<span class="stat"><b>${h.streak}</b>أيام متتالية</span><span class="stat"><b>${h.lessons.reduce((s, l) => s + l.objectives.filter((o) => o.k === "ok").length, 0)}</b>مهارة متقنة</span>` + (ind ? `<span class="stat" title="نسبة الأسئلة التي حللتها بنفسك بلا تلميح هذا الأسبوع"><b>${ind.pct}%</b>حللتها بنفسك</span>` : "");
+  $("#plan").innerHTML = h.plan.map((p, i) => `<button class="pcard ${i ? "" : "first"}" data-i="${i}"><span class="k">${KIND[p.kind] || ""} · ${p.minutes} دقائق</span><span class="t">${esc(p.title)}</span><span class="r">${esc(p.reason)}</span><span class="go">ابدأ ←</span></button>`).join("") || `<div class="note">لا شيء مستحق الآن. اختر أي درس من الأسفل.</div>`;
+  $("#plan").querySelectorAll(".pcard").forEach((b) => (b.onclick = () => startPlan(h.plan[+b.dataset.i])));
+  $("#unitTitle").textContent = h.unit.title;
+  $("#lessonGrid").innerHTML = h.lessons.map((l) => {
+    const ok = l.objectives.filter((o) => o.k === "ok").length;
+    const tag = l.complete ? `<span class="tag done">✓ أنهيته</span>` : l.placement === true ? `<span class="tag ok">عندك أساس جيد</span>` : l.placement === false ? `<span class="tag no">يحتاج عناية</span>` : "";
+    return `<button class="lcard" data-id="${l.id}"><span class="k">${esc(l.kind)} ${tag}</span><span class="t">${esc(l.title)}</span><span class="m">${esc(l.pages)} · ${ok} من ${l.objectives.length} مهارات متقنة</span><span class="objs">${l.objectives.map((o) => `<i class="${o.k}" title="${esc(o.short)}"></i>`).join("")}</span>${l.prereqWarn && !l.started ? `<span class="warnLine">⚠️ ${esc(l.prereqWarn)}</span>` : ""}</button>`;
+  }).join("");
+  $("#lessonGrid").querySelectorAll(".lcard").forEach((b) => (b.onclick = () => openLesson(b.dataset.id)));
+  $("#mistakes").innerHTML = h.mistakes.length ? h.mistakes.map((m, i) => `<div class="mist"><div class="w"><b>${esc(m.label)}</b> · ${esc(m.objShort)} (${esc(m.lessonTitle)}) · ${m.count} ${m.count > 1 ? "مرات" : "مرة"}${m.example?.why ? `<div class="why">${esc(m.example.why)}</div>` : ""}</div><button class="smallBtn" data-i="${i}">عالجه</button></div>`).join("") : `<div class="note">لا أخطاء مفتوحة. كل خطأ ترتكبه يُحفظ هنا مع سببه، ويختفي عندما تتقن المهارة.</div>`;
+  $("#mistakes").querySelectorAll("button").forEach((b) => (b.onclick = () => { const m = h.mistakes[+b.dataset.i]; openLesson(m.lesson, { goal: "fix", focus: m.obj, label: `أريد أن أعالج خطئي في «${m.objShort}»` }); }));
+  $("#excluded").innerHTML = `<b>دروس خارج هذه النسخة:</b><ul>${h.unit.excluded.map((x) => `<li>${esc(x.title)} (${esc(x.pages)}): ${esc(x.reason)}</li>`).join("")}</ul>`;
+}
+function startPlan(p) {
+  if (p.kind === "placement") return placement();
+  const labels = { review: `أريد مراجعة «${p.title.replace(/^مراجعة: /, "")}»`, fix: "أريد أن أعالج خطئي المتكرر", test: "أعرف هذا الدرس، اختبرني", new: "أتعلّم الدرس من البداية", continue: "" };
+  openLesson(p.lesson, p.goal ? { goal: p.goal, focus: p.obj, label: labels[p.kind] || "" } : null);
+}
+$("#examBtn").onclick = () => $("#examBox").classList.toggle("on");
+$("#examGo").onclick = async () => {
+  const d = await api("exam_plan", { minutes: Number($("#examMin").value) });
+  $("#examList").innerHTML = d.items.length ? `<div class="note" style="margin-bottom:6px">رتّبتها من الأكثر احتياجًا. ابدأ من الأعلى:</div>` + d.items.map((x, i) => `<div class="mist"><div class="w"><b>${i + 1}. ${esc(x.objShort)}</b> (${esc(x.lessonTitle)}) · ${x.minutes} دقائق<div class="why">${esc(x.why)}</div></div><button class="smallBtn" data-i="${i}">ابدأ</button></div>`).join("") : `<div class="note">أنت متقن لكل مهارات الوحدة! اختبار قصير في أي درس يكفي.</div>`;
+  $("#examList").querySelectorAll("button").forEach((b) => (b.onclick = () => { const x = d.items[+b.dataset.i]; openLesson(x.lesson, { goal: "exam_prep", label: "عندي امتحان وعايز أراجع" }); }));
+};
+
+/* ---------- onboarding + placement ---------- */
+const INTERESTS = ["⚽ كرة القدم", "🎮 الألعاب الإلكترونية", "🎨 الرسم", "📚 القصص", "🔬 العلوم والاختراعات", "🏎️ السيارات", "🍳 الطبخ", "🐎 الخيل والطبيعة", "💻 البرمجة", "🕌 التاريخ الإسلامي"];
+function onboarding() {
+  show("onboardScreen"); $("#obHello").textContent = `أهلًا ${auth.name}!`;
+  $("#obChips").innerHTML = INTERESTS.map((t) => `<button class="chip">${t}</button>`).join("");
+  $("#obChips").querySelectorAll(".chip").forEach((c) => (c.onclick = () => c.classList.toggle("on")));
+}
+async function saveInterests() {
+  const picked = [...$("#obChips").querySelectorAll(".chip.on")].map((c) => c.textContent.replace(/^\S+\s/, ""));
+  if ($("#obMore").value.trim()) picked.push($("#obMore").value.trim());
+  await api("onboard", { interests: picked.join("، ") });
+}
+$("#obGo").onclick = async () => { await saveInterests(); placement(); };
+$("#obSkip").onclick = async () => { await saveInterests(); goHome(); };
+async function placement(body = {}) {
+  show("placementScreen");
+  const d = await api("placement", body);
+  if (d.done) {
+    $("#plBar").style.width = "100%";
+    $("#plBody").innerHTML = `<div class="panel"><h3>انتهى التقييم: ${d.right} من ${d.total}</h3>
+      ${d.strong.length ? `<p><b>عندك أساس جيد في:</b> ${d.strong.map(esc).join("، ")}. سنبدأ فيها باختبار قصير بدل الشرح من الصفر.</p>` : ""}
+      ${d.weak.length ? `<p style="margin-top:6px"><b>سنبدأ معًا في:</b> ${d.weak.map(esc).join("، ")}.</p>` : ""}
+      <p class="note" style="margin-top:8px">لا تقلق من أي خطأ: سجّلت سببه وسأعالجه معك خطوة خطوة.</p></div><button class="bigBtn" id="plHome">إلى خطتي</button>`;
+    $("#plHome").onclick = goHome; return;
+  }
+  const c = d.card; $("#plBar").style.width = `${(100 * (c.index - 1)) / c.total}%`;
+  $("#plBody").innerHTML = "";
+  const el = cardEl(c, (choice, meta) => placement({ q: c.q, choice, ...meta }));
+  $("#plBody").appendChild(el);
 }
 
 /* ---------- lesson ---------- */
-async function openLesson(id) {
+async function openLesson(id, start = null) {
   show("appScreen"); $("#chat").innerHTML = ""; cards = {}; $("#banner").style.display = "none";
   try {
     const d = await api("open", { lesson_id: id });
@@ -281,9 +431,10 @@ async function openLesson(id) {
     aiPill($("#aiPill2"), d.ai);
     if (d.ai === "mock") banner("وضع تجريبي: مفتاح الذكاء الاصطناعي لم يُضف بعد. المسار والأسئلة والتلميحات تعمل، لكن ردود المرافق نصوص ثابتة.");
     if (!d.history.length || !d.view.started) addBubble("bot", `أهلًا ${auth.name}! أنا مرافقك في درس «${lesson.title}».\nسأنقلك بين الشرح والحوار والتدريب والمراجعة والاختبار حسب إجاباتك، وسأخبرك دائمًا أين نحن ولماذا. وإن كان عندك هدف معيّن قله لي في أي وقت.\nماذا تريد اليوم؟`);
-    d.history.forEach(renderItem);
+    d.history.forEach((it) => renderItem(it, false));
     renderView(d.view);
-    if (!d.view.started) goalChips();
+    if (start && start.goal) { act({ kind: "start", goal: start.goal, focus: start.focus, label: start.label }); }
+    else if (!d.view.started) goalChips();
     const last = store.get("last_" + id), now = Date.now();
     store.set("last_" + id, now);
     if (d.view.started && last && now - last > 10 * 60 * 1000) act({ kind: "resume" });
@@ -322,39 +473,52 @@ function addBubble(role, text, id) {
   }
   $("#chat").appendChild(el); scroll(); return el;
 }
-function renderCard(it) {
+// Builds a question card. onAnswer(choice|text, {ms, conf}) — ms = time since the card appeared (only for fresh cards).
+function cardEl(it, onAnswer, live = true) {
   const st = it.state || {};
+  const t0 = live && !st.done ? performance.now() : null; let conf;
+  const meta = () => ({ ms: t0 != null ? Math.round(performance.now() - t0) : undefined, conf });
   const card = document.createElement("div"); card.className = "qcard" + (it.test ? " test" : ""); card.dataset.q = it.q;
-  card.innerHTML = `<div class="meta">${it.test ? `<span class="pill" style="background:#262390;color:#fff">🧪 سؤال اختبار ${it.testIndex} من ${it.testTotal}</span>` : ""}<span class="pill">${esc(it.objText)}</span><span class="pill g">الصعوبة ${"●".repeat(it.diff)}${"○".repeat(3 - it.diff)}</span></div><div class="stem">${fmt(it.stem)}</div>`;
+  card.innerHTML = `<div class="meta">${it.placement ? `<span class="pill" style="background:#262390;color:#fff">سؤال ${it.index} من ${it.total}</span>` : ""}${it.test ? `<span class="pill" style="background:#262390;color:#fff">🧪 سؤال اختبار ${it.testIndex} من ${it.testTotal}</span>` : ""}<span class="pill">${esc(it.objText)}</span><span class="pill g">الصعوبة ${"●".repeat(it.diff)}${"○".repeat(3 - it.diff)}</span></div><div class="stem">${fmt(it.stem)}</div>`;
   if (it.kind === "mcq") {
     it.options.forEach((t, i) => {
       const b = document.createElement("button"); b.className = "opt"; b.innerHTML = `<span class="r"></span><span>${fmt(t)}</span>`;
       if (it.test) { if (st.chosen === i) b.classList.add("chosen"); if (st.done) b.disabled = true; }
       else { if ((st.wrong || []).includes(i)) { b.classList.add("wrong"); b.disabled = true; } if (st.done) { b.disabled = true; if (st.correct === i) b.classList.add("right"); } }
-      b.onclick = () => { if (busy) return; act({ kind: "answer", q: it.q, choice: i }); };
+      b.onclick = () => { if (busy) return; onAnswer(i, meta()); };
       card.appendChild(b);
     });
+    if (!st.done) { // "how sure are you?" — lets the companion tell a misconception from a guess
+      const cf = document.createElement("div"); cf.className = "conf";
+      cf.innerHTML = `<span>قبل أن تختار: هل أنت متأكد؟</span><button data-c="sure">😎 متأكد</button><button data-c="unsure">🤔 مش متأكد</button>`;
+      cf.querySelectorAll("button").forEach((x) => (x.onclick = () => { conf = conf === x.dataset.c ? undefined : x.dataset.c; cf.querySelectorAll("button").forEach((y) => y.classList.toggle("on", y.dataset.c === conf)); }));
+      card.insertBefore(cf, card.querySelector(".opt"));
+    }
   } else {
     const row = document.createElement("div"); row.className = "openRow"; row.innerHTML = `<input placeholder="اكتب إجابتك هنا…"><button>إرسال</button>`;
     const inp = row.querySelector("input"), btn = row.querySelector("button");
     if (st.done) { inp.disabled = true; btn.disabled = true; inp.value = st.last || ""; }
-    btn.onclick = () => { const v = inp.value.trim(); if (!v || busy) return; addBubble("me", v); act({ kind: "answer", q: it.q, text: v }); };
+    btn.onclick = () => { const v = inp.value.trim(); if (!v || busy) return; addBubble("me", v); onAnswer(v, meta()); };
     inp.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); btn.click(); } };
     card.appendChild(row);
   }
   if (!it.test && !st.done && it.hintsTotal) { const hb = document.createElement("button"); hb.className = "hintBtn"; hb.textContent = "💡 أحتاج تلميحًا"; hb.onclick = () => { if (!busy) act({ kind: "hint", q: it.q }); }; card.appendChild(hb); }
   (st.shownHints || []).forEach((h) => { const d = document.createElement("div"); d.className = "hintBox"; d.textContent = h; card.appendChild(d); });
+  return card;
+}
+function renderCard(it, live) {
+  const card = cardEl(it, (v, m) => act({ kind: "answer", q: it.q, ...(typeof v === "number" ? { choice: v } : { text: v }), ...m }), live);
   // lock older open cards while a test runs
   if (it.test) Object.values(cards).forEach((c) => { if (!c.classList.contains("test")) lockCard(c); });
   cards[it.q] = card; $("#chat").appendChild(card); scroll();
 }
-function lockCard(c) { c.querySelectorAll("button,input").forEach((b) => (b.disabled = true)); c.querySelector(".hintBtn")?.remove(); }
-function renderItem(it) {
+function lockCard(c) { c.querySelectorAll("button,input").forEach((b) => (b.disabled = true)); c.querySelector(".hintBtn")?.remove(); c.querySelector(".conf")?.remove(); }
+function renderItem(it, live = true) {
   if (it.type === "student") addBubble("me", it.text);
   else if (it.type === "bot") addBubble("bot", it.text, it.id);
   else if (it.type === "mode") addBubble("modeSys", `${it.icon} انتقال إلى وضع ${it.name}${it.focusName ? " · " + it.focusName : ""}${it.by === "student" ? " (اختيارك)" : ""}`);
   else if (it.type === "sys") addBubble("sys", it.text);
-  else if (it.type === "card") renderCard(it);
+  else if (it.type === "card") renderCard(it, live);
   else if (it.type === "hint") { const c = cards[it.q]; if (c) { const d = document.createElement("div"); d.className = "hintBox"; d.textContent = it.text; c.appendChild(d); scroll(); } }
   else if (it.type === "result") {
     const c = cards[it.q]; if (!c) return; const opts = c.querySelectorAll(".opt");
@@ -381,7 +545,34 @@ async function act(payload) {
   finally { busy = false; setBusy(false); }
 }
 function setBusy(b) { $("#send").disabled = b; $("#inp").disabled = b; if (!b) $("#inp").focus(); }
-function sendText() { const v = $("#inp").value.trim(); if (!v || busy) return; $("#inp").value = ""; $("#goals")?.remove(); addBubble("me", v); act({ kind: "message", text: v }); }
+let pendingImg = null;
+function sendText() {
+  const v = $("#inp").value.trim(); if ((!v && !pendingImg) || busy) return;
+  $("#inp").value = ""; $("#goals")?.remove();
+  const el = addBubble("me", v || "📷");
+  const body = { kind: "message", text: v };
+  if (pendingImg) { const i = new Image(); i.src = `data:${pendingImg.mediaType};base64,${pendingImg.data}`; el.querySelector(".body").prepend(i); body.image = pendingImg; pendingImg = null; $("#attach").classList.remove("on"); }
+  act(body);
+}
+// photo: shrink to <=1600px JPEG before sending
+$("#imgIn").onchange = async (ev) => {
+  const f = ev.target.files[0]; ev.target.value = ""; if (!f) return;
+  const img = await createImageBitmap(f).catch(() => null); if (!img) { alert("تعذّر فتح الصورة"); return; }
+  const k = Math.min(1, 1600 / Math.max(img.width, img.height)), cv = document.createElement("canvas");
+  cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k); cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+  pendingImg = { mediaType: "image/jpeg", data: cv.toDataURL("image/jpeg", 0.85).split(",")[1] };
+  $("#attach").textContent = "📎 الصورة جاهزة — اكتب سؤالك عنها (مثل: صحّح حلي) ثم أرسل"; $("#attach").classList.add("on"); $("#inp").focus();
+};
+// voice: the student speaks, the companion replies in text
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition; let rec = null;
+$("#mic").onclick = () => {
+  if (!SR) { alert("المتصفح لا يدعم الإدخال الصوتي. جرّب Chrome أو Safari."); return; }
+  if (rec) { rec.stop(); return; }
+  rec = new SR(); rec.lang = "ar-SA"; rec.interimResults = true; const base = $("#inp").value;
+  rec.onresult = (e) => { $("#inp").value = base + [...e.results].map((r) => r[0].transcript).join(""); };
+  rec.onend = () => { rec = null; $("#mic").classList.remove("rec"); };
+  rec.start(); $("#mic").classList.add("rec");
+};
 $("#send").onclick = sendText;
 $("#inp").onkeydown = (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendText(); } };
 $("#otherBtn").onclick = () => $("#menu").classList.toggle("open");
@@ -390,8 +581,36 @@ $("#menu").querySelectorAll("button").forEach((b) => (b.onclick = () => { $("#me
 $("#reset").onclick = async () => { if (busy || !confirmReset()) return; await api("reset", { lesson_id: lesson.id }); openLesson(lesson.id); };
 function confirmReset() { const b = $("#reset"); if (b.dataset.armed) { delete b.dataset.armed; b.textContent = "ابدأ الدرس من جديد"; return true; } b.dataset.armed = 1; b.textContent = "اضغط مرة أخرى للتأكيد"; setTimeout(() => { delete b.dataset.armed; b.textContent = "ابدأ الدرس من جديد"; }, 3000); return false; }
 
+/* ---------- parent report ---------- */
+function renderReport(d, shareable) {
+  show("reportScreen"); const f = d.facts;
+  $("#repTitle").textContent = `تقرير ${f.student} لولي الأمر`;
+  $("#repSub").textContent = `${f.progress.lessons_total} دروس في الوحدة · آخر نشاط ${f.activity.last_seen || "—"} · أُعدّ ${new Date(d.generated).toLocaleDateString("ar-SA")}`;
+  $("#repText").textContent = d.narrative;
+  $("#repKv").innerHTML = [[`${f.progress.mastered}/${f.progress.total}`, "مهارات متقنة"], [f.activity.study_days, "أيام مذاكرة"], [f.accuracy ? f.accuracy.solo_pct + "%" : "—", "حلّها وحده بلا تلميح"], [f.activity.streak, "أيام متتالية"]].map(([b, t]) => `<div><b>${esc(b)}</b><span>${t}</span></div>`).join("");
+  const imp = f.improvements.map((x) => `<li>${esc(x.objective)} (${esc(x.lesson)}): من ${x.from}% إلى ${x.to}% خلال ${x.attempts} محاولة</li>`).join("");
+  const gaps = f.gaps.map((g) => `<li><b>${esc(g.objective)}</b> (${esc(g.lesson)}) — السبب: ${esc(g.cause)}، ${g.times > 1 ? `تكرر ${g.times} مرات` : "مرة واحدة"}</li>`).join("");
+  $("#repDetails").innerHTML = `<h3>التفاصيل</h3>${gaps ? `<b>الفجوات الحالية</b><ul style="margin:4px 18px 10px 0">${gaps}</ul>` : ""}${imp ? `<b>التحسّن</b><ul style="margin:4px 18px 10px 0">${imp}</ul>` : ""}${f.progress.mastered_list.length ? `<b>ما أتقنه</b><div class="note" style="font-size:13px">${f.progress.mastered_list.map(esc).join("، ")}</div>` : ""}`;
+  $("#repShare").style.display = shareable ? "block" : "none"; $("#repBack").style.display = shareable ? "" : "none";
+}
+$("#reportBtn").onclick = async () => {
+  show("reportScreen"); $("#repText").textContent = "جارٍ إعداد التقرير…";
+  try {
+    const [d, l] = await Promise.all([api("report"), api("report_link")]);
+    renderReport(d, true);
+    $("#repLink").value = location.origin + location.pathname + "?report=" + l.token;
+  } catch (e) { $("#repText").textContent = "⚠️ " + e.message; }
+};
+$("#repCopy").onclick = () => { $("#repLink").select(); navigator.clipboard?.writeText($("#repLink").value); $("#repCopy").textContent = "تم ✓"; };
+$("#repBack").onclick = goHome;
+
 /* ---------- boot ---------- */
-if (auth?.tester_id) openLessons(); else show("loginScreen");
+const reportToken = new URLSearchParams(location.search).get("report");
+if (reportToken) {
+  show("reportScreen"); $("#repBack").style.display = "none";
+  fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "report_view", token: reportToken }) })
+    .then((r) => r.json()).then((d) => d.error ? ($("#repText").textContent = "⚠️ " + d.error) : renderReport(d, false));
+} else if (auth?.tester_id) goHome(); else show("loginScreen");
 </script>
 </body>
 </html>
